@@ -13,11 +13,11 @@ public class Lig4 {
 
     }
     private boolean checkVitoria(){
-        //Logica pro metodo
+        
         return false;
     }
     private boolean checkEmpate(){
-        //Logica pro metodo
+        
         return false;
     }
     public void trocarJogador(){

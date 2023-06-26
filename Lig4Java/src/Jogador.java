@@ -15,6 +15,6 @@ public class Jogador {
     }
 
     public void fazerJogada(Tabuleiro tabuleiro, int coluna) {
-        //logica do metodo
+
     }
 }
