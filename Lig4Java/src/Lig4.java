@@ -9,7 +9,7 @@ public class Lig4 {
     public void jogar(int coluna){
 
     }
-    public void jogarAi(){
+    public void jogarIA(){
 
     }
     private boolean checkVitoria(){
