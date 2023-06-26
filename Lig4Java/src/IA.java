@@ -5,6 +5,6 @@ public class IA extends Jogador {
 
     @Override
     public void fazerJogada(Tabuleiro tabuleiro, int coluna) {
-        // Implemente a lógica para fazer a jogada da AI
+        // Implemente a lógica para fazer a jogada da IA
     }
 }
