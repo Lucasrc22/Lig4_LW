@@ -45,7 +45,16 @@ public class Tabuleiro {
         return -1; // Coluna cheia, não é possível inserir uma peça
     }
 
+    public void inserirPeca(int coluna, char peca) {
+        int linhaInsercao = obterLinhaInsercao(coluna);
+        if (linhaInsercao != -1) {
+            matriz[linhaInsercao][coluna] = peca;
+        }
+    }
     public void adicionarPeca(int linha, int coluna, char peca) {
         matriz[linha][coluna] = peca;
+    }
+    public int getColunas() {
+        return colunas;
     }
 }
