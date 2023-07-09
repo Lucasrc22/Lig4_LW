@@ -110,7 +110,7 @@ public class Lig4 {
         jogadorAtual = jogador1;
     }
 
-    public boolean isModoIA() {
+    public boolean ehModoIA() {
         return modoIA;
     }
 }
