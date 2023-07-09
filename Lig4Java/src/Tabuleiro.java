@@ -60,7 +60,7 @@ public class Tabuleiro {
                 return i;
             }
         }
-        return -1; // Coluna cheia, não é possível inserir uma peça
+        return -1; 
     }
 
     public void inserirPeca(int coluna, char peca) {
