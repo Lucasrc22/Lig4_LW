@@ -1,8 +1,8 @@
 public class Lig4 {
-    private Tabuleiro tabuleiro;
-    private Jogador jogador1;
-    private Jogador jogador2;
-    private Jogador jogadorAtual;
+    protected Tabuleiro tabuleiro;
+    protected Jogador jogador1;
+    protected Jogador jogador2;
+    protected Jogador jogadorAtual;
     private boolean modoIA;
 
     public void inicializar(boolean modoIA) {
@@ -32,14 +32,70 @@ public class Lig4 {
     }
 
     private boolean checkVitoria() {
-        // Lógica para verificar se houve vitória
-        return false;
+        for (int linha = 0; linha < tabuleiro.getLinhas(); linha++) {
+            for (int coluna = 0; coluna <= tabuleiro.getColunas() - 4; coluna++) {
+                char peca = tabuleiro.getPeca(linha, coluna);
+                if (peca != ' ' &&
+                        peca == tabuleiro.getPeca(linha, coluna + 1) &&
+                        peca == tabuleiro.getPeca(linha, coluna + 2) &&
+                        peca == tabuleiro.getPeca(linha, coluna + 3)) {
+                    return true; 
+                }
+            }
+        }
+    
+      
+        for (int coluna = 0; coluna < tabuleiro.getColunas(); coluna++) {
+            for (int linha = 0; linha <= tabuleiro.getLinhas() - 4; linha++) {
+                char peca = tabuleiro.getPeca(linha, coluna);
+                if (peca != ' ' &&
+                        peca == tabuleiro.getPeca(linha + 1, coluna) &&
+                        peca == tabuleiro.getPeca(linha + 2, coluna) &&
+                        peca == tabuleiro.getPeca(linha + 3, coluna)) {
+                    return true; 
+                }
+            }
+        }
+    
+        
+        for (int linha = 0; linha <= tabuleiro.getLinhas() - 4; linha++) {
+            for (int coluna = 0; coluna <= tabuleiro.getColunas() - 4; coluna++) {
+                char peca = tabuleiro.getPeca(linha, coluna);
+                if (peca != ' ' &&
+                        peca == tabuleiro.getPeca(linha + 1, coluna + 1) &&
+                        peca == tabuleiro.getPeca(linha + 2, coluna + 2) &&
+                        peca == tabuleiro.getPeca(linha + 3, coluna + 3)) {
+                    return true; 
+                }
+            }
+        }
+    
+        
+        for (int linha = 3; linha < tabuleiro.getLinhas(); linha++) {
+            for (int coluna = 0; coluna <= tabuleiro.getColunas() - 4; coluna++) {
+                char peca = tabuleiro.getPeca(linha, coluna);
+                if (peca != ' ' &&
+                        peca == tabuleiro.getPeca(linha - 1, coluna + 1) &&
+                        peca == tabuleiro.getPeca(linha - 2, coluna + 2) &&
+                        peca == tabuleiro.getPeca(linha - 3, coluna + 3)) {
+                    return true; 
+                }
+            }
+        }
+    
+        return false; 
     }
-
+    
     private boolean checkEmpate() {
-        // Lógica para verificar se houve empate
-        return false;
+        for (int coluna = 0; coluna < tabuleiro.getColunas(); coluna++) {
+            if (!tabuleiro.colunaCheia(coluna)) {
+                return false; 
+            }
+        }
+    
+        return true; 
     }
+    
 
     public void trocarJogador() {
         if (jogadorAtual == jogador1) {

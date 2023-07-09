@@ -27,6 +27,7 @@ public class Tabuleiro {
         }
         System.out.println("---------------------");
     }
+    
 
     public boolean colunaValida(int coluna) {
         return coluna >= 0 && coluna < colunas;
@@ -34,6 +35,23 @@ public class Tabuleiro {
 
     public boolean colunaCheia(int coluna) {
         return matriz[0][coluna] != ' ';
+    }
+    public boolean posicaoValida(int linha, int coluna) {
+        return linha >= 0 && linha < linhas && coluna >= 0 && coluna < colunas;
+    }
+    public char getPeca(int linha, int coluna) {
+        if (posicaoValida(linha, coluna)) {
+            return matriz[linha][coluna];
+        } else {
+            throw new IllegalArgumentException("Posição inválida no tabuleiro!");
+        }
+    }
+    public void setPeca(int linha, int coluna, char peca) {
+        if (posicaoValida(linha, coluna)) {
+            matriz[linha][coluna] = peca;
+        } else {
+            throw new IllegalArgumentException("Posição inválida no tabuleiro!");
+        }
     }
 
     public int obterLinhaInsercao(int coluna) {
@@ -56,5 +74,8 @@ public class Tabuleiro {
     }
     public int getColunas() {
         return colunas;
+    }
+    public int getLinhas() {
+        return linhas;
     }
 }
