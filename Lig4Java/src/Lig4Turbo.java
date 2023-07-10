@@ -32,7 +32,7 @@ public class Lig4Turbo extends Lig4 {
     }
     
 
-    private char getPeca(int linha, int coluna) {
+    private char getPeca(int linha, int coluna) throws IllegalArgumentException{
         if (posicaoValida(linha, coluna)) {
             return tabuleiro.getPeca(linha, coluna);
         } else {
@@ -40,7 +40,7 @@ public class Lig4Turbo extends Lig4 {
         }
     }
 
-    private void setPeca(int linha, int coluna, char peca) {
+    private void setPeca(int linha, int coluna, char peca) throws IllegalArgumentException{
         if (posicaoValida(linha, coluna)) {
             tabuleiro.setPeca(linha, coluna, peca);
         } else {

@@ -39,14 +39,14 @@ public class Tabuleiro {
     public boolean posicaoValida(int linha, int coluna) {
         return linha >= 0 && linha < linhas && coluna >= 0 && coluna < colunas;
     }
-    public char getPeca(int linha, int coluna) {
+    public char getPeca(int linha, int coluna) throws IllegalArgumentException{
         if (posicaoValida(linha, coluna)) {
             return matriz[linha][coluna];
         } else {
             throw new IllegalArgumentException("Posição inválida no tabuleiro!");
         }
     }
-    public void setPeca(int linha, int coluna, char peca) {
+    public void setPeca(int linha, int coluna, char peca) throws IllegalArgumentException{
         if (posicaoValida(linha, coluna)) {
             matriz[linha][coluna] = peca;
         } else {
