@@ -9,7 +9,7 @@ public class Lig4 {
     }
 
     public void inicializar(boolean modoIA) {
-        this.modoIA = modoIA;
+        
         tabuleiro = new Tabuleiro(6, 7);
         jogador1 = new Jogador("Jogador 1", 'X');
         jogador2 = modoIA ? new IA('O') : new Jogador("Jogador 2", 'O');
