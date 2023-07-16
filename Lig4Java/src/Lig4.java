@@ -10,7 +10,7 @@ public class Lig4 {
         tabuleiro = new Tabuleiro(6, 7);
         jogador1 = new Jogador("Jogador 1", 'X');
         jogador2 = modoIA ? new IA('O') : new Jogador("Jogador 2", 'O');
-        jogadorAtual = jogador1; // Define o jogador atual como jogador1 no início do jogo
+        jogadorAtual = jogador1; 
     }
 
     public void jogar(int coluna) {
