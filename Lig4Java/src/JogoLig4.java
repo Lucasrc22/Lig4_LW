@@ -12,7 +12,7 @@ public class JogoLig4 {
             boolean modoIA = (opcao == 2);
 
             Lig4 jogo = new Lig4(modoIA);
-            jogo.inicializar(modoIA);
+            jogo.inicializar();
 
             scanner.close();
         } catch (Exception e) {

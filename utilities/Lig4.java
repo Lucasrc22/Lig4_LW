@@ -11,7 +11,7 @@ public class Lig4 {
     }
 
 
-    public void inicializar(boolean modoIA) {
+    public void inicializar() {
         
         tabuleiro = new Tabuleiro(6, 7);
         jogador1 = new Jogador("Jogador 1", 'X');
