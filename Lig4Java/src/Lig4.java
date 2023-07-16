@@ -4,6 +4,9 @@ public class Lig4 {
     protected Jogador jogador2;
     protected Jogador jogadorAtual;
     private boolean modoIA;
+    public Lig4(boolean modoIA){
+        this.modoIA = modoIA;
+    }
 
     public void inicializar(boolean modoIA) {
         this.modoIA = modoIA;

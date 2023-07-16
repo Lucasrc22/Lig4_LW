@@ -11,7 +11,7 @@ public class JogoLig4 {
             int opcao = obterOpcao(scanner);
             boolean modoIA = (opcao == 2);
 
-            Lig4 jogo = new Lig4();
+            Lig4 jogo = new Lig4(modoIA);
             jogo.inicializar(modoIA);
 
             scanner.close();
