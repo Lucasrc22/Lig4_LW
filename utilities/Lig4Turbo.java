@@ -1,5 +1,3 @@
-package utilities;
-
 public class Lig4Turbo extends Lig4 {
     public Lig4Turbo(boolean modoIA){
         super(modoIA);
@@ -7,14 +5,14 @@ public class Lig4Turbo extends Lig4 {
 
     @Override
     public void jogar(int coluna) {
-        super.jogar(coluna);
+        super.jogar(coluna); 
 
-        int linha = tabuleiro.obterLinhaInsercao(coluna);
+        int linha = tabuleiro.obterLinhaInsercao(coluna); 
         char peca = jogadorAtual.getPeca();
 
-
-        alterarPecasVizinhas(linha, coluna, peca, 1, 0);
-        alterarPecasVizinhas(linha, coluna, peca, -1, 0);
+        
+        alterarPecasVizinhas(linha, coluna, peca, 1, 0);  
+        alterarPecasVizinhas(linha, coluna, peca, -1, 0); 
     }
 
     private void alterarPecasVizinhas(int linha, int coluna, char peca, int incrementoLinha, int incrementoColuna) {
@@ -35,7 +33,7 @@ public class Lig4Turbo extends Lig4 {
     private boolean posicaoValida(int linha, int coluna) {
         return linha >= 0 && linha < tabuleiro.getLinhas() && coluna >= 0 && coluna < tabuleiro.getColunas();
     }
-
+    
 
     private char getPeca(int linha, int coluna) throws IllegalArgumentException{
         if (posicaoValida(linha, coluna)) {

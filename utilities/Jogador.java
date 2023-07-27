@@ -1,8 +1,7 @@
-package utilities;
-
 public class Jogador {
     private String nome;
     private char peca;
+    private Cor cor;
 
     public Jogador(String nome, char peca) {
         this.nome = nome;
@@ -15,6 +14,13 @@ public class Jogador {
 
     public char getPeca() {
         return peca;
+    }
+    public Cor getCor() {
+        return cor;
+    }
+
+    public void setCor(Cor cor) {
+        this.cor = cor;
     }
 
     public void fazerJogada(Tabuleiro tabuleiro, int coluna) {

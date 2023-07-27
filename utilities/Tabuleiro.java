@@ -1,5 +1,3 @@
-package utilities;
-
 public class Tabuleiro {
     private char[][] matriz;
     private int linhas;
@@ -29,7 +27,7 @@ public class Tabuleiro {
         }
         System.out.println("---------------------");
     }
-
+    
 
     public boolean colunaValida(int coluna) {
         return coluna >= 0 && coluna < colunas;
@@ -62,7 +60,7 @@ public class Tabuleiro {
                 return i;
             }
         }
-        return -1;
+        return -1; 
     }
 
     public void inserirPeca(int coluna, char peca) {

@@ -1,22 +1,19 @@
-package utilities;
-
 public class Lig4 {
     protected Tabuleiro tabuleiro;
     protected Jogador jogador1;
     protected Jogador jogador2;
     protected Jogador jogadorAtual;
-    private boolean modoIA;
+    protected boolean modoIA;
     public Lig4(boolean modoIA){
         this.modoIA = modoIA;
     }
-
 
     public void inicializar() {
         
         tabuleiro = new Tabuleiro(6, 7);
         jogador1 = new Jogador("Jogador 1", 'X');
-        jogador2 = modoIA ? new IA('O') : new Jogador("Jogador 2", 'O');
-        jogadorAtual = jogador1;
+        jogador2 = modoIA ? new IA("IA", 'O')  : new Jogador("Jogador 2", 'O');
+        jogadorAtual = jogador1; 
     }
 
     public void jogar(int coluna) {
@@ -37,7 +34,7 @@ public class Lig4 {
         }
     }
 
-    private boolean checkVitoria() {
+    protected boolean checkVitoria() {
         for (int linha = 0; linha < tabuleiro.getLinhas(); linha++) {
             for (int coluna = 0; coluna <= tabuleiro.getColunas() - 4; coluna++) {
                 char peca = tabuleiro.getPeca(linha, coluna);
@@ -45,12 +42,12 @@ public class Lig4 {
                         peca == tabuleiro.getPeca(linha, coluna + 1) &&
                         peca == tabuleiro.getPeca(linha, coluna + 2) &&
                         peca == tabuleiro.getPeca(linha, coluna + 3)) {
-                    return true;
+                    return true; 
                 }
             }
         }
-
-
+    
+      
         for (int coluna = 0; coluna < tabuleiro.getColunas(); coluna++) {
             for (int linha = 0; linha <= tabuleiro.getLinhas() - 4; linha++) {
                 char peca = tabuleiro.getPeca(linha, coluna);
@@ -58,12 +55,12 @@ public class Lig4 {
                         peca == tabuleiro.getPeca(linha + 1, coluna) &&
                         peca == tabuleiro.getPeca(linha + 2, coluna) &&
                         peca == tabuleiro.getPeca(linha + 3, coluna)) {
-                    return true;
+                    return true; 
                 }
             }
         }
-
-
+    
+        
         for (int linha = 0; linha <= tabuleiro.getLinhas() - 4; linha++) {
             for (int coluna = 0; coluna <= tabuleiro.getColunas() - 4; coluna++) {
                 char peca = tabuleiro.getPeca(linha, coluna);
@@ -71,12 +68,12 @@ public class Lig4 {
                         peca == tabuleiro.getPeca(linha + 1, coluna + 1) &&
                         peca == tabuleiro.getPeca(linha + 2, coluna + 2) &&
                         peca == tabuleiro.getPeca(linha + 3, coluna + 3)) {
-                    return true;
+                    return true; 
                 }
             }
         }
-
-
+    
+        
         for (int linha = 3; linha < tabuleiro.getLinhas(); linha++) {
             for (int coluna = 0; coluna <= tabuleiro.getColunas() - 4; coluna++) {
                 char peca = tabuleiro.getPeca(linha, coluna);
@@ -84,24 +81,24 @@ public class Lig4 {
                         peca == tabuleiro.getPeca(linha - 1, coluna + 1) &&
                         peca == tabuleiro.getPeca(linha - 2, coluna + 2) &&
                         peca == tabuleiro.getPeca(linha - 3, coluna + 3)) {
-                    return true;
+                    return true; 
                 }
             }
         }
-
-        return false;
+    
+        return false; 
     }
-
-    private boolean checkEmpate() {
+    
+    protected boolean checkEmpate() {
         for (int coluna = 0; coluna < tabuleiro.getColunas(); coluna++) {
             if (!tabuleiro.colunaCheia(coluna)) {
-                return false;
+                return false; 
             }
         }
-
-        return true;
+    
+        return true; 
     }
-
+    
 
     public void trocarJogador() {
         if (jogadorAtual == jogador1) {
@@ -111,7 +108,7 @@ public class Lig4 {
         }
     }
 
-    private void reiniciarJogo() {
+    protected void reiniciarJogo() {
         tabuleiro.inicializar();
         jogadorAtual = jogador1;
     }
