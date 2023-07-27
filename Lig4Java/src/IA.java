@@ -1,8 +1,8 @@
 import java.util.Random;
 
 public class IA extends Jogador {
-    public IA(char peca) {
-        super("IA", peca);
+    public IA(String nome, char peca) {
+        super(nome, peca);
     }
 
     @Override

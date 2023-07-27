@@ -3,7 +3,7 @@ public class Lig4 {
     protected Jogador jogador1;
     protected Jogador jogador2;
     protected Jogador jogadorAtual;
-    private boolean modoIA;
+    protected boolean modoIA;
     public Lig4(boolean modoIA){
         this.modoIA = modoIA;
     }
@@ -12,7 +12,7 @@ public class Lig4 {
         
         tabuleiro = new Tabuleiro(6, 7);
         jogador1 = new Jogador("Jogador 1", 'X');
-        jogador2 = modoIA ? new IA('O') : new Jogador("Jogador 2", 'O');
+        jogador2 = modoIA ? new IA("IA", 'O')  : new Jogador("Jogador 2", 'O');
         jogadorAtual = jogador1; 
     }
 
@@ -34,7 +34,7 @@ public class Lig4 {
         }
     }
 
-    private boolean checkVitoria() {
+    protected boolean checkVitoria() {
         for (int linha = 0; linha < tabuleiro.getLinhas(); linha++) {
             for (int coluna = 0; coluna <= tabuleiro.getColunas() - 4; coluna++) {
                 char peca = tabuleiro.getPeca(linha, coluna);
@@ -89,7 +89,7 @@ public class Lig4 {
         return false; 
     }
     
-    private boolean checkEmpate() {
+    protected boolean checkEmpate() {
         for (int coluna = 0; coluna < tabuleiro.getColunas(); coluna++) {
             if (!tabuleiro.colunaCheia(coluna)) {
                 return false; 
@@ -108,7 +108,7 @@ public class Lig4 {
         }
     }
 
-    private void reiniciarJogo() {
+    protected void reiniciarJogo() {
         tabuleiro.inicializar();
         jogadorAtual = jogador1;
     }
