@@ -16,6 +16,12 @@ public class Lig4TurboMaluco extends Lig4 {
         jogador2.setCor(corJogador2);
         jogadorAtual = jogador1;
     }
+    public void setNivelMaluquice(int nivelMaluquice)throws IllegalArgumentException {
+        if (nivelMaluquice < 0 || nivelMaluquice > 100) {
+            throw new IllegalArgumentException("O nível de maluquice deve estar entre 0 e 100.");
+        }
+        this.nivelMaluquice = nivelMaluquice;
+    }
 
     @Override
     public void jogar(int coluna) {

@@ -11,6 +11,12 @@ public abstract class Jogador {
     public String getNome() {
         return nome;
     }
+    public void setNome(String nome) throws IllegalArgumentException{
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new IllegalArgumentException("O nome do jogador não pode ser nulo ou vazio.");
+        }
+        this.nome = nome;
+    }
 
     public char getPeca() {
         return peca;

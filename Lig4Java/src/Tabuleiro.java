@@ -46,12 +46,11 @@ public class Tabuleiro implements TabuleiroInterface{
             throw new IllegalArgumentException("Posição inválida no tabuleiro!");
         }
     }
-    public void setPeca(int linha, int coluna, char peca) throws IllegalArgumentException{
-        if (posicaoValida(linha, coluna)) {
-            matriz[linha][coluna] = peca;
-        } else {
+    public void setPeca(int linha, int coluna, char peca) throws IllegalArgumentException {
+        if (!posicaoValida(linha, coluna)) {
             throw new IllegalArgumentException("Posição inválida no tabuleiro!");
         }
+        this.matriz[linha][coluna] = peca;
     }
 
     public int obterLinhaInsercao(int coluna) {
