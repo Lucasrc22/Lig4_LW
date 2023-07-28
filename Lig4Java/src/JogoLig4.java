@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-//import utilities.Lig4;
-
 public class JogoLig4 {
     public static void main(String[] args) {
         try {
@@ -13,6 +11,8 @@ public class JogoLig4 {
 
             Lig4 jogo = new Lig4(modoIA);
             jogo.inicializar();
+
+            jogarPartida(jogo, scanner);
 
             scanner.close();
         } catch (Exception e) {
@@ -37,5 +37,34 @@ public class JogoLig4 {
                     System.out.println("Opção inválida! Por favor, escolha uma opção válida.");
             }
         } while (true);
+    }
+
+    public static void jogarPartida(Lig4 jogo, Scanner scanner) {
+        while (true) {
+            
+            jogo.tabuleiro.imprimir();
+
+            if (jogo.checkVitoria()) {
+                System.out.println(jogo.jogadorAtual.getNome() + " venceu!");
+                break;
+            } else if (jogo.checkEmpate()) {
+                System.out.println("O jogo terminou em empate!");
+                break;
+            }
+
+            
+            int coluna;
+            if (jogo.jogadorAtual instanceof JogadorHumano) {
+                System.out.println(jogo.jogadorAtual.getNome() + ", é a sua vez! Escolha a coluna (1 a 7):");
+                coluna = scanner.nextInt() - 1;
+            } else {
+                coluna = jogo.obterColunaIA();
+            }
+
+            jogo.jogar(coluna);
+
+            
+            jogo.trocarJogador();
+        }
     }
 }

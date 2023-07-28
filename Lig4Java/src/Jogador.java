@@ -1,4 +1,4 @@
-public class Jogador {
+public abstract class Jogador {
     private String nome;
     private char peca;
     private Cor cor;
@@ -15,26 +15,18 @@ public class Jogador {
     public char getPeca() {
         return peca;
     }
+
     public Cor getCor() {
         return cor;
     }
 
-    public void setCor(Cor cor) {
+    public void setCor(Cor cor) throws ValorAtributoInvalido {
+        if (cor == null) {
+            throw new ValorAtributoInvalido("A cor do jogador não pode ser nula.");
+        }
         this.cor = cor;
     }
 
-    public void fazerJogada(Tabuleiro tabuleiro, int coluna) {
-        if (!tabuleiro.colunaValida(coluna)) {
-            System.out.println("Coluna inválida. Escolha uma coluna válida.");
-            return;
-        }
-
-        if (tabuleiro.colunaCheia(coluna)) {
-            System.out.println("Coluna cheia. Escolha outra coluna.");
-            return;
-        }
-
-        int linhaInsercao = tabuleiro.obterLinhaInsercao(coluna);
-        tabuleiro.adicionarPeca(linhaInsercao, coluna, peca);
-    }
+    public abstract void fazerJogada(TabuleiroInterface tabuleiro, int coluna);
+    public abstract String obterTipoJogador();
 }

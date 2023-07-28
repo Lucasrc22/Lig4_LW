@@ -1,5 +1,7 @@
+import java.util.Random;
+
 public class Lig4 {
-    protected Tabuleiro tabuleiro;
+    protected TabuleiroInterface tabuleiro;
     protected Jogador jogador1;
     protected Jogador jogador2;
     protected Jogador jogadorAtual;
@@ -9,12 +11,12 @@ public class Lig4 {
     }
 
     public void inicializar() {
-        
         tabuleiro = new Tabuleiro(6, 7);
-        jogador1 = new Jogador("Jogador 1", 'X');
-        jogador2 = modoIA ? new IA("IA", 'O')  : new Jogador("Jogador 2", 'O');
-        jogadorAtual = jogador1; 
+        jogador1 = new JogadorHumano("Jogador 1", 'X');
+        jogador2 = modoIA ? new IA("IA", 'O') : new JogadorHumano("Jogador 2", 'O');
+        jogadorAtual = jogador1;
     }
+    
 
     public void jogar(int coluna) {
         if (jogadorAtual == jogador1) {
@@ -116,4 +118,10 @@ public class Lig4 {
     public boolean ehModoIA() {
         return modoIA;
     }
+
+    public int obterColunaIA() {
+        Random random = new Random();
+        return random.nextInt(tabuleiro.getColunas());
+    }
+
 }

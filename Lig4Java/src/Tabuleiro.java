@@ -1,4 +1,4 @@
-public class Tabuleiro {
+public class Tabuleiro implements TabuleiroInterface{
     private char[][] matriz;
     private int linhas;
     private int colunas;
