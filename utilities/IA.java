@@ -6,7 +6,7 @@ public class IA extends Jogador {
     }
 
     @Override
-    public void fazerJogada(Tabuleiro tabuleiro, int coluna) {
+    public void fazerJogada(TabuleiroInterface tabuleiro, int coluna) {
         Random random = new Random();
         int colunaIA = random.nextInt(tabuleiro.getColunas());
 
@@ -18,4 +18,10 @@ public class IA extends Jogador {
 
         System.out.println("A IA jogou na coluna " + (colunaIA + 1));
     }
+    @Override
+    public String obterTipoJogador() {
+        return "IA";
+    }
+
+    
 }
