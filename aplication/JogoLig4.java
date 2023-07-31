@@ -1,7 +1,9 @@
+/* 
 package aplication;
 
 import java.util.Scanner;
 import utilities.Lig4;
+
 
 public class JogoLig4 {
     public static void main(String[] args) {
@@ -40,3 +42,4 @@ public class JogoLig4 {
         } while (true);
     }
 }
+*/
