@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public enum Cor {
     VAZIO(' '),  
     VERMELHO('V'),
@@ -15,6 +17,10 @@ public enum Cor {
 
     public char getValor() {
         return valor;
+    }
+    public static Cor obterCorRandom() {
+        Random random = new Random();
+        return values()[random.nextInt(values().length)];
     }
 
     public static Cor fromChar(char valor) throws IllegalArgumentException {
