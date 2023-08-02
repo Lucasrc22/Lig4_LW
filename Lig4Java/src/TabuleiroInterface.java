@@ -17,9 +17,9 @@ public interface TabuleiroInterface {
 
     void inserirPeca(int coluna, Cor cor);
 
-    void adicionarPeca(int linha, int coluna, Cor cor);
-
     int getColunas();
 
     int getLinhas();
+
+    void adicionarPeca(int linhaInsercao, int coluna, Cor cor);
 }

@@ -21,7 +21,9 @@ public class Tabuleiro implements TabuleiroInterface {
     public void imprimir() {
         for (int i = 0; i < linhas; i++) {
             for (int j = 0; j < colunas; j++) {
-                System.out.print("| " + matriz[i][j].getValor() + " ");
+                Cor cor = matriz[i][j];
+                char valor = cor != null ? cor.getValor() : ' '; 
+                System.out.print("| " + valor + " ");
             }
             System.out.println("|");
         }
@@ -70,10 +72,18 @@ public class Tabuleiro implements TabuleiroInterface {
             matriz[linhaInsercao][coluna] = cor;
         }
     }
-
+    @Override
     public void adicionarPeca(int linha, int coluna, Cor cor) {
         matriz[linha][coluna] = cor;
     }
+
+    public void adicionarPeca(int coluna, Cor cor) {
+        int linhaInsercao = obterLinhaInsercao(coluna);
+        if (linhaInsercao != -1) {
+            matriz[linhaInsercao][coluna] = cor;
+        }
+    }
+    
 
     public int getColunas() {
         return colunas;

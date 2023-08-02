@@ -8,25 +8,28 @@ public class Lig4 {
     protected boolean modoIA;
     public Lig4(boolean modoIA){
         this.modoIA = modoIA;
+        inicializar();
     }
 
     public void inicializar() {
         tabuleiro = new Tabuleiro(6, 7);
         Cor corJogador1 = obterCorRandom();
         Cor corJogador2 = obterCorRandom();
+        
         jogador1 = new JogadorHumano("Jogador 1", corJogador1);
+        jogador1.setCor(corJogador1);  
+        
         jogador2 = modoIA ? new IA("IA", corJogador2) : new JogadorHumano("Jogador 2", corJogador2);
+        jogador2.setCor(corJogador2);  
+        
         jogadorAtual = jogador1;
     }
+    
     private Cor obterCorRandom() {
         return Cor.obterCorRandom();
     }
     public void jogar(int coluna) {
-        if (jogadorAtual == jogador1) {
-            jogador1.fazerJogada(tabuleiro, coluna);
-        } else {
-            jogador2.fazerJogada(tabuleiro, coluna);
-        }
+        jogadorAtual.fazerJogada(tabuleiro, coluna);
     
         if (checkVitoria()) {
             System.out.println(jogadorAtual.getNome() + " venceu!");
@@ -35,9 +38,11 @@ public class Lig4 {
             System.out.println("O jogo terminou em empate!");
             reiniciarJogo();
         } else {
-            trocarJogador(); 
+            trocarJogador();
         }
     }
+    
+    
     
 
     protected boolean checkVitoria() {
