@@ -1,4 +1,5 @@
 public enum Cor {
+    VAZIO(' '),  
     VERMELHO('V'),
     AMARELO('A'),
     AZUL('Z'),
@@ -16,12 +17,12 @@ public enum Cor {
         return valor;
     }
 
-    public static Cor fromChar(char valor) throws IllegalArgumentException{
+    public static Cor fromChar(char valor) throws IllegalArgumentException {
         for (Cor cor : Cor.values()) {
             if (cor.valor == valor) {
                 return cor;
             }
         }
-        throw new IllegalArgumentException("Cor inválido: " + valor);
+        throw new IllegalArgumentException("Cor inválida: " + valor);
     }
 }

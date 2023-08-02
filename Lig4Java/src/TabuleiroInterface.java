@@ -1,14 +1,25 @@
 public interface TabuleiroInterface {
     void inicializar();
+
     void imprimir();
+
     boolean colunaValida(int coluna);
+
     boolean colunaCheia(int coluna);
+
     boolean posicaoValida(int linha, int coluna);
-    char getPeca(int linha, int coluna);
-    void setPeca(int linha, int coluna, char peca);
+
+    Cor getPeca(int linha, int coluna) throws IllegalArgumentException;
+
+    void setPeca(int linha, int coluna, Cor cor) throws IllegalArgumentException;
+
     int obterLinhaInsercao(int coluna);
-    void inserirPeca(int coluna, char peca);
-    void adicionarPeca(int linha, int coluna, char peca);
+
+    void inserirPeca(int coluna, Cor cor);
+
+    void adicionarPeca(int linha, int coluna, Cor cor);
+
     int getColunas();
+
     int getLinhas();
 }
