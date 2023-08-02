@@ -24,7 +24,7 @@ public class Lig4 {
         } else {
             jogador2.fazerJogada(tabuleiro, coluna);
         }
-
+    
         if (checkVitoria()) {
             System.out.println(jogadorAtual.getNome() + " venceu!");
             reiniciarJogo();
@@ -32,9 +32,10 @@ public class Lig4 {
             System.out.println("O jogo terminou em empate!");
             reiniciarJogo();
         } else {
-            trocarJogador();
+            trocarJogador(); // Adicione esta linha para trocar o jogador após a jogada
         }
     }
+    
 
     protected boolean checkVitoria() {
         for (int linha = 0; linha < tabuleiro.getLinhas(); linha++) {

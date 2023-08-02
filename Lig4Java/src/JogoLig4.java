@@ -43,7 +43,7 @@ public class JogoLig4 {
         while (true) {
             
             jogo.tabuleiro.imprimir();
-
+    
             if (jogo.checkVitoria()) {
                 System.out.println(jogo.jogadorAtual.getNome() + " venceu!");
                 break;
@@ -51,7 +51,7 @@ public class JogoLig4 {
                 System.out.println("O jogo terminou em empate!");
                 break;
             }
-
+    
             
             int coluna;
             if (jogo.jogadorAtual instanceof JogadorHumano) {
@@ -60,11 +60,9 @@ public class JogoLig4 {
             } else {
                 coluna = jogo.obterColunaIA();
             }
-
+    
             jogo.jogar(coluna);
-
-            
-            jogo.trocarJogador();
         }
     }
+    
 }
