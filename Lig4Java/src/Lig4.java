@@ -32,7 +32,7 @@ public class Lig4 {
             System.out.println("O jogo terminou em empate!");
             reiniciarJogo();
         } else {
-            trocarJogador(); // Adicione esta linha para trocar o jogador após a jogada
+            trocarJogador(); 
         }
     }
     

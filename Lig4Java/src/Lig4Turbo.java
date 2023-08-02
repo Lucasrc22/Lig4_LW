@@ -1,3 +1,4 @@
+
 public class Lig4Turbo extends Lig4 {
     public Lig4Turbo(boolean modoIA){
         super(modoIA);
@@ -5,15 +6,22 @@ public class Lig4Turbo extends Lig4 {
 
     @Override
     public void jogar(int coluna) {
-        super.jogar(coluna); 
-
-        int linha = tabuleiro.obterLinhaInsercao(coluna); 
-        char peca = jogadorAtual.getPeca();
-
-        
-        alterarPecasVizinhas(linha, coluna, peca, 1, 0);  
-        alterarPecasVizinhas(linha, coluna, peca, -1, 0); 
+        if (jogadorAtual instanceof JogadorHumano) {
+            super.jogar(coluna);
+    
+            int linha = tabuleiro.obterLinhaInsercao(coluna);
+            char peca = jogadorAtual.getPeca();
+    
+            alterarPecasVizinhas(linha, coluna, peca, 1, 0);
+            alterarPecasVizinhas(linha, coluna, peca, -1, 0);
+        } else if (jogadorAtual instanceof IA) {
+            int colunaIA = obterColunaIA(); 
+            super.jogar(colunaIA);
+        }
+    
+        trocarJogador(); 
     }
+    
 
     private void alterarPecasVizinhas(int linha, int coluna, char peca, int incrementoLinha, int incrementoColuna) {
         for (int i = 1; i <= 3; i++) {
