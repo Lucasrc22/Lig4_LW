@@ -30,7 +30,7 @@ public class Lig4 {
     }
     public void jogar(int coluna) {
         jogadorAtual.fazerJogada(tabuleiro, coluna);
-    
+        
         if (checkVitoria()) {
             System.out.println(jogadorAtual.getNome() + " venceu!");
             reiniciarJogo();
@@ -39,10 +39,20 @@ public class Lig4 {
             reiniciarJogo();
         } else {
             trocarJogador();
+            
+            
+            System.out.println(jogadorAtual.getNome() + ", é a sua vez! Escolha a coluna (1 a 7):");
         }
     }
     
     
+    public void trocarJogador() {
+        if (jogadorAtual == jogador1) {
+            jogadorAtual = jogador2;
+        } else {
+            jogadorAtual = jogador1;
+        }
+    }
     
 
     protected boolean checkVitoria() {
@@ -107,14 +117,6 @@ public class Lig4 {
         return true; 
     }
     
-
-    public void trocarJogador() {
-        if (jogadorAtual == jogador1) {
-            jogadorAtual = jogador2;
-        } else {
-            jogadorAtual = jogador1;
-        }
-    }
 
     protected void reiniciarJogo() {
         tabuleiro.inicializar();

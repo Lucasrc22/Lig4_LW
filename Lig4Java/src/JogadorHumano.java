@@ -21,10 +21,6 @@ public void fazerJogada(TabuleiroInterface tabuleiro, int coluna) {
    
 
 }
-
-
-
-
     @Override
     public String obterTipoJogador() {
         return "Humano";
