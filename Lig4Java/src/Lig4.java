@@ -34,7 +34,7 @@ public class Lig4 {
         } else if (jogadorAtual instanceof IA) {
             int colunaIA = obterColunaIA();
             jogadorAtual.fazerJogada(tabuleiro, colunaIA);
-            System.out.println("A IA jogou na coluna " + (colunaIA));
+            System.out.println( (colunaIA));
         }
     
         if (checkVitoria()) {
