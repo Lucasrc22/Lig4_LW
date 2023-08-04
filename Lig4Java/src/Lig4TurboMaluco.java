@@ -26,11 +26,15 @@ public class Lig4TurboMaluco extends Lig4 {
         if (jogadorAtual instanceof JogadorHumano) {
             JogadorHumano jogador = (JogadorHumano) jogadorAtual;
             Cor corJogadorAtual = jogador.getCor();
+            super.jogar(coluna);
             alterarPecasVizinhas(coluna, corJogadorAtual);
+        } else if (jogadorAtual instanceof IA) {
+            int colunaIa = obterColunaIA();
+            super.jogar(colunaIa);
+            Cor cor = jogadorAtual.getCor();
+            alterarPecasVizinhas(colunaIa, cor);
         }
-
-        super.jogar(coluna);
-
+        
         if (checkVitoria()) {
             System.out.println(jogadorAtual.getNome() + " venceu!");
             reiniciarJogo();
@@ -38,9 +42,10 @@ public class Lig4TurboMaluco extends Lig4 {
             System.out.println("O jogo terminou em empate!");
             reiniciarJogo();
         }
-
+    
         trocarJogador();
     }
+    
 
 
     private void alterarPecasVizinhas(int coluna, Cor cor) {
