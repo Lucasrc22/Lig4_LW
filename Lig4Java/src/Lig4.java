@@ -19,10 +19,17 @@ public class Lig4 {
         jogador1 = new JogadorHumano("Jogador 1", corJogador1);
         jogador1.setCor(corJogador1);  
         
-        jogador2 = modoIA ? new IA("IA", corJogador2) : new JogadorHumano("Jogador 2", corJogador2);
+        jogador2 = modoIA ? new IA("IA", obterCorDiferente(corJogador2)) : new JogadorHumano("Jogador 2", obterCorDiferente(corJogador2));
         jogador2.setCor(corJogador2);  
         
         jogadorAtual = jogador1;
+    }
+    private Cor obterCorDiferente(Cor corExcluida) {
+        Cor novaCor = obterCorRandom();
+        while (novaCor == corExcluida || novaCor == Cor.VAZIO) {
+            novaCor = obterCorRandom();
+        }
+        return novaCor;
     }
     
     private Cor obterCorRandom() {
