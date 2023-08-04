@@ -8,13 +8,18 @@ public class JogoLig4 {
     
             int opcao = obterOpcao(scanner);
             boolean modoIA = (opcao == 2);
-            boolean modoLig4TurboIA = (opcao == 3);
-            boolean modoLig4TurboJogador = (opcao == 4); 
+            boolean modoLig4TurboIA = (opcao == 4);
+            boolean modoLig4TurboJogador = (opcao == 3);
+            boolean modoLig4TurboMalucoJogador =(opcao ==5);
+            boolean modoLig4TurboMalucoIA = (opcao==6); 
     
             Lig4 jogo;
     
             if (modoLig4TurboIA || modoLig4TurboJogador) {
                 jogo = new Lig4Turbo(modoIA);
+            } else if (modoLig4TurboMalucoIA || modoLig4TurboMalucoJogador) {
+                int nivelMaluquice = obterNivelMaluquice(scanner);
+                jogo = new Lig4TurboMaluco(modoIA, nivelMaluquice);
             } else {
                 jogo = new Lig4(modoIA);
             }
@@ -35,8 +40,10 @@ public class JogoLig4 {
             System.out.println("Escolha o modo de jogo:");
             System.out.println("1. Jogador vs Jogador");
             System.out.println("2. Jogador vs IA");
-            System.out.println("3. Jogador vs IA (Lig4Turbo)");
-            System.out.println("4. Jogador vs Jogador (Lig4Turbo)"); 
+            System.out.println("3. Jogador vs Jogador (Lig4Turbo)");
+            System.out.println("4. Jogador vs IA (Lig4Turbo)"); 
+            System.out.println("5. Jogador vs Jogador (Lig4TurboMaluco)");
+            System.out.println("6. Jogador vs IA (Lig4TurboMaluco)"); 
             System.out.print("Opção: ");
             opcao = scanner.nextInt();
 
@@ -45,6 +52,8 @@ public class JogoLig4 {
                 case 2:
                 case 3:
                 case 4:
+                case 5:
+                case 6:
                     return opcao;
                 default:
                     System.out.println("Opção inválida! Por favor, escolha uma opção válida.");
@@ -81,6 +90,19 @@ public class JogoLig4 {
             
             jogo.trocarJogador();
         }
+    }
+    public static int obterNivelMaluquice(Scanner scanner) {
+        int nivelMaluquice;
+        do {
+            System.out.print("Digite o nível de maluquice (0 a 100): ");
+            nivelMaluquice = scanner.nextInt();
+
+            if (nivelMaluquice < 0 || nivelMaluquice > 100) {
+                System.out.println("Nível de maluquice inválido! Deve estar entre 0 e 100.");
+            } else {
+                return nivelMaluquice;
+            }
+        } while (true);
     }
     
     
