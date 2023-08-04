@@ -6,25 +6,35 @@ public class Lig4Turbo extends Lig4 {
 
     @Override
     public void jogar(int coluna) {
-    if (jogadorAtual instanceof JogadorHumano) {
-        super.jogar(coluna);
-
-        int linha = tabuleiro.obterLinhaInsercao(coluna);
-        Cor cor = jogadorAtual.getCor();
-
-        alterarPecasVizinhas(linha, coluna, cor);
-    } else if (jogadorAtual instanceof IA) {
-        int colunaIA = obterColunaIA();
-        super.jogar(colunaIA);
-
-        int linha = tabuleiro.obterLinhaInsercao(colunaIA);
-        Cor cor = jogadorAtual.getCor();
-
-        alterarPecasVizinhas(linha, colunaIA, cor);
+        if (jogadorAtual instanceof JogadorHumano) {
+            super.jogar(coluna);
+    
+            int linha = tabuleiro.obterLinhaInsercao(coluna);
+            Cor cor = jogadorAtual.getCor();
+    
+            alterarPecasVizinhas(linha, coluna, cor);
+        } else if (jogadorAtual instanceof IA) {
+            int colunaIA = obterColunaIA();
+            super.jogar(colunaIA);
+    
+            int linha = tabuleiro.obterLinhaInsercao(colunaIA);
+            Cor cor = jogadorAtual.getCor();
+    
+            alterarPecasVizinhas(linha, colunaIA, cor);
+        }
+    
+        
+        if (checkVitoria()) {
+            System.out.println(jogadorAtual.getNome() + " venceu!");
+            reiniciarJogo();
+        } else if (checkEmpate()) {
+            System.out.println("O jogo terminou em empate!");
+            reiniciarJogo();
+        } else {
+            trocarJogador();
+        }
     }
-
-    trocarJogador();
-}
+    
 
    
     

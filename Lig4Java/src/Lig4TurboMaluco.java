@@ -23,14 +23,25 @@ public class Lig4TurboMaluco extends Lig4 {
 
     @Override
     public void jogar(int coluna) {
-        super.jogar(coluna);
-
         if (jogadorAtual instanceof JogadorHumano) {
             JogadorHumano jogador = (JogadorHumano) jogadorAtual;
             Cor corJogadorAtual = jogador.getCor();
             alterarPecasVizinhas(coluna, corJogadorAtual);
         }
+
+        super.jogar(coluna);
+
+        if (checkVitoria()) {
+            System.out.println(jogadorAtual.getNome() + " venceu!");
+            reiniciarJogo();
+        } else if (checkEmpate()) {
+            System.out.println("O jogo terminou em empate!");
+            reiniciarJogo();
+        }
+
+        trocarJogador();
     }
+
 
     private void alterarPecasVizinhas(int coluna, Cor cor) {
         int linhaInsercao = tabuleiro.obterLinhaInsercao(coluna);

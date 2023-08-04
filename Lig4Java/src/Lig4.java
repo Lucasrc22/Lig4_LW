@@ -39,8 +39,6 @@ public class Lig4 {
             reiniciarJogo();
         } else {
             trocarJogador();
-            
-            
             System.out.println(jogadorAtual.getNome() + ", é a sua vez! Escolha a coluna (1 a 7):");
         }
     }

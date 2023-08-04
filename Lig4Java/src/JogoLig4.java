@@ -56,14 +56,6 @@ public class JogoLig4 {
         while (true) {
             jogo.tabuleiro.imprimir();
     
-            if (jogo.checkVitoria()) {
-                System.out.println(jogo.jogadorAtual.getNome() + " venceu!");
-                break;
-            } else if (jogo.checkEmpate()) {
-                System.out.println("O jogo terminou em empate!");
-                break;
-            }
-    
             int coluna;
             if (jogo.jogadorAtual instanceof JogadorHumano) {
                 System.out.println(jogo.jogadorAtual.getNome() + ", é a sua vez! Escolha a coluna (1 a 7):");
@@ -73,9 +65,19 @@ public class JogoLig4 {
             }
     
             jogo.jogar(coluna);
+    
+            if (jogo.checkVitoria()) {
+                System.out.println(jogo.jogadorAtual.getNome() + " venceu!");
+                break;
+            } else if (jogo.checkEmpate()) {
+                System.out.println("O jogo terminou em empate!");
+                break;
+            }
+    
             jogo.trocarJogador();
         }
     }
+    
     
     
 }
