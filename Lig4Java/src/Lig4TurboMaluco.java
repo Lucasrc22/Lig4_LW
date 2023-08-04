@@ -8,10 +8,10 @@ public class Lig4TurboMaluco extends Lig4 {
         super(modoIA);
         this.nivelMaluquice = nivelMaluquice;
 
-        Cor corJogador1 = obterCorRandom();
-        Cor corJogador2 = obterCorRandom();
+        Cor corJogador1 = obterCorDiferente(Cor.VAZIO);
+        Cor corJogador2 = obterCorDiferente(Cor.VAZIO);
         jogador1 = new JogadorHumano("Jogador 1", corJogador1);
-        jogador2 = modoIA ? new IA("IA", corJogador2) : new JogadorHumano("Jogador 2", corJogador2);
+        jogador2 = modoIA ? new IA("IA", obterCorDiferente(corJogador2)) : new JogadorHumano("Jogador 2", obterCorDiferente(corJogador2));
         jogadorAtual = jogador1;
     }
     public void setNivelMaluquice(int nivelMaluquice)throws IllegalArgumentException {
@@ -19,6 +19,13 @@ public class Lig4TurboMaluco extends Lig4 {
             throw new IllegalArgumentException("O nível de maluquice deve estar entre 0 e 100.");
         }
         this.nivelMaluquice = nivelMaluquice;
+    }
+    private Cor obterCorDiferente(Cor corExcluida) {
+        Cor novaCor = obterCorRandom();
+        while (novaCor == corExcluida || novaCor == Cor.VAZIO) {
+            novaCor = obterCorRandom();
+        }
+        return novaCor;
     }
 
     @Override
@@ -41,6 +48,8 @@ public class Lig4TurboMaluco extends Lig4 {
         } else if (checkEmpate()) {
             System.out.println("O jogo terminou em empate!");
             reiniciarJogo();
+        }else{
+            trocarJogador();
         }
     
         trocarJogador();
