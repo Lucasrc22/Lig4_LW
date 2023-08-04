@@ -1,19 +1,19 @@
-public class Tabuleiro implements TabuleiroInterface{
-    private char[][] matriz;
+public class Tabuleiro implements TabuleiroInterface {
+    private Cor[][] matriz;
     private int linhas;
     private int colunas;
 
     public Tabuleiro(int linhas, int colunas) {
         this.linhas = linhas;
         this.colunas = colunas;
-        matriz = new char[linhas][colunas];
+        matriz = new Cor[linhas][colunas];
         inicializar();
     }
 
     public void inicializar() {
         for (int i = 0; i < linhas; i++) {
             for (int j = 0; j < colunas; j++) {
-                matriz[i][j] = ' ';
+                matriz[i][j] = Cor.VAZIO;
             }
         }
     }
@@ -21,59 +21,74 @@ public class Tabuleiro implements TabuleiroInterface{
     public void imprimir() {
         for (int i = 0; i < linhas; i++) {
             for (int j = 0; j < colunas; j++) {
-                System.out.print("| " + matriz[i][j] + " ");
+                Cor cor = matriz[i][j];
+                char valor = cor != null ? cor.getValor() : ' '; 
+                System.out.print("| " + valor + " ");
             }
             System.out.println("|");
         }
         System.out.println("---------------------");
     }
-    
 
     public boolean colunaValida(int coluna) {
         return coluna >= 0 && coluna < colunas;
     }
 
     public boolean colunaCheia(int coluna) {
-        return matriz[0][coluna] != ' ';
+        return matriz[0][coluna] != Cor.VAZIO;
     }
+
     public boolean posicaoValida(int linha, int coluna) {
         return linha >= 0 && linha < linhas && coluna >= 0 && coluna < colunas;
     }
-    public char getPeca(int linha, int coluna) throws IllegalArgumentException{
+
+    public Cor getPeca(int linha, int coluna) throws IllegalArgumentException {
         if (posicaoValida(linha, coluna)) {
             return matriz[linha][coluna];
         } else {
             throw new IllegalArgumentException("Posição inválida no tabuleiro!");
         }
     }
-    public void setPeca(int linha, int coluna, char peca) throws IllegalArgumentException {
+
+    public void setPeca(int linha, int coluna, Cor cor) throws IllegalArgumentException {
         if (!posicaoValida(linha, coluna)) {
             throw new IllegalArgumentException("Posição inválida no tabuleiro!");
         }
-        this.matriz[linha][coluna] = peca;
+        matriz[linha][coluna] = cor;
     }
 
     public int obterLinhaInsercao(int coluna) {
         for (int i = linhas - 1; i >= 0; i--) {
-            if (matriz[i][coluna] == ' ') {
+            if (matriz[i][coluna] == Cor.VAZIO) {
                 return i;
             }
         }
-        return -1; 
+        return -1;
     }
 
-    public void inserirPeca(int coluna, char peca) {
+    public void inserirPeca(int coluna, Cor cor) {
         int linhaInsercao = obterLinhaInsercao(coluna);
         if (linhaInsercao != -1) {
-            matriz[linhaInsercao][coluna] = peca;
+            matriz[linhaInsercao][coluna] = cor;
         }
     }
-    public void adicionarPeca(int linha, int coluna, char peca) {
-        matriz[linha][coluna] = peca;
+    @Override
+    public void adicionarPeca(int linha, int coluna, Cor cor) {
+        matriz[linha][coluna] = cor;
     }
+
+    public void adicionarPeca(int coluna, Cor cor) {
+        int linhaInsercao = obterLinhaInsercao(coluna);
+        if (linhaInsercao != -1) {
+            matriz[linhaInsercao][coluna] = cor;
+        }
+    }
+    
+
     public int getColunas() {
         return colunas;
     }
+
     public int getLinhas() {
         return linhas;
     }

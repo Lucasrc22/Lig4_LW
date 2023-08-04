@@ -1,7 +1,7 @@
 public class JogadorHumano extends Jogador {
 
-    public JogadorHumano(String nome, char peca) {
-        super(nome, peca);
+    public JogadorHumano(String nome, Cor cor) {
+        super(nome, cor.getValor());
     }
 
     @Override
@@ -16,10 +16,11 @@ public class JogadorHumano extends Jogador {
             return;
         }
 
-        int linhaInsercao = tabuleiro.obterLinhaInsercao(coluna);
-        tabuleiro.adicionarPeca(linhaInsercao, coluna, getPeca());
-    }
+        Cor corPecaJogador = getCor();  
+        tabuleiro.inserirPeca(coluna, corPecaJogador); 
+    
 
+    }
     @Override
     public String obterTipoJogador() {
         return "Humano";

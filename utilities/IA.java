@@ -1,8 +1,8 @@
 import java.util.Random;
 
 public class IA extends Jogador {
-    public IA(String nome, char peca) {
-        super(nome, peca);
+    public IA(String nome, Cor cor) {  
+        super(nome, cor.getValor());
     }
 
     @Override
@@ -14,14 +14,15 @@ public class IA extends Jogador {
             colunaIA = random.nextInt(tabuleiro.getColunas());
         }
 
-        tabuleiro.inserirPeca(colunaIA, getPeca());
+        Cor corPecaIA = Cor.fromChar(getPeca());  
+        tabuleiro.inserirPeca(colunaIA, corPecaIA);  
 
         System.out.println("A IA jogou na coluna " + (colunaIA + 1));
     }
+
+
     @Override
     public String obterTipoJogador() {
         return "IA";
     }
-
-    
 }

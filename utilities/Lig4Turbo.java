@@ -1,3 +1,4 @@
+
 public class Lig4Turbo extends Lig4 {
     public Lig4Turbo(boolean modoIA){
         super(modoIA);
@@ -5,26 +6,59 @@ public class Lig4Turbo extends Lig4 {
 
     @Override
     public void jogar(int coluna) {
-        super.jogar(coluna); 
-
-        int linha = tabuleiro.obterLinhaInsercao(coluna); 
-        char peca = jogadorAtual.getPeca();
-
+        if (jogadorAtual instanceof JogadorHumano) {
+            super.jogar(coluna);
+    
+            int linha = tabuleiro.obterLinhaInsercao(coluna);
+            Cor cor = jogadorAtual.getCor();
+    
+            alterarPecasVizinhas(linha, coluna, cor);
+        } else if (jogadorAtual instanceof IA) {
+            int colunaIA = obterColunaIA();
+            super.jogar(colunaIA);
+    
+            int linha = tabuleiro.obterLinhaInsercao(colunaIA);
+            Cor cor = jogadorAtual.getCor();
+    
+            alterarPecasVizinhas(linha, colunaIA, cor);
+        }
+    
         
-        alterarPecasVizinhas(linha, coluna, peca, 1, 0);  
-        alterarPecasVizinhas(linha, coluna, peca, -1, 0); 
+        if (checkVitoria()) {
+            System.out.println(jogadorAtual.getNome() + " venceu!");
+            reiniciarJogo();
+        } else if (checkEmpate()) {
+            System.out.println("O jogo terminou em empate!");
+            reiniciarJogo();
+        } else {
+            trocarJogador();
+        }
     }
+    
 
-    private void alterarPecasVizinhas(int linha, int coluna, char peca, int incrementoLinha, int incrementoColuna) {
+   
+    
+
+    private void alterarPecasVizinhas(int linha, int coluna, Cor cor) {
         for (int i = 1; i <= 3; i++) {
-            int linhaVizinha = linha + i * incrementoLinha;
-            int colunaVizinha = coluna + i * incrementoColuna;
+            int linhaVizinha = linha + i;
+            int colunaVizinha = coluna + i;
 
             if (posicaoValida(linhaVizinha, colunaVizinha)) {
-                char pecaVizinha = getPeca(linhaVizinha, colunaVizinha);
+                Cor corVizinha = tabuleiro.getPeca(linhaVizinha, colunaVizinha);
 
-                if (pecaVizinha != peca) {
-                    setPeca(linhaVizinha, colunaVizinha, peca);
+                if (corVizinha != cor) {
+                    tabuleiro.setPeca(linhaVizinha, colunaVizinha, cor);
+                }
+            }
+
+            colunaVizinha = coluna - i;
+
+            if (posicaoValida(linhaVizinha, colunaVizinha)) {
+                Cor corVizinha = tabuleiro.getPeca(linhaVizinha, colunaVizinha);
+
+                if (corVizinha != cor) {
+                    tabuleiro.setPeca(linhaVizinha, colunaVizinha, cor);
                 }
             }
         }
@@ -34,20 +68,5 @@ public class Lig4Turbo extends Lig4 {
         return linha >= 0 && linha < tabuleiro.getLinhas() && coluna >= 0 && coluna < tabuleiro.getColunas();
     }
     
-
-    private char getPeca(int linha, int coluna) throws IllegalArgumentException{
-        if (posicaoValida(linha, coluna)) {
-            return tabuleiro.getPeca(linha, coluna);
-        } else {
-            throw new IllegalArgumentException("Posição inválida no tabuleiro!");
-        }
-    }
-
-    private void setPeca(int linha, int coluna, char peca) throws IllegalArgumentException{
-        if (posicaoValida(linha, coluna)) {
-            tabuleiro.setPeca(linha, coluna, peca);
-        } else {
-            throw new IllegalArgumentException("Posição inválida no tabuleiro!");
-        }
-    }
+    
 }

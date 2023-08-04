@@ -1,4 +1,7 @@
+import java.util.Random;
+
 public enum Cor {
+    VAZIO(' '),  
     VERMELHO('V'),
     AMARELO('A'),
     AZUL('Z'),
@@ -15,13 +18,17 @@ public enum Cor {
     public char getValor() {
         return valor;
     }
+    public static Cor obterCorRandom() {
+        Random random = new Random();
+        return values()[random.nextInt(values().length)];
+    }
 
-    public static Cor fromChar(char valor) throws IllegalArgumentException{
+    public static Cor fromChar(char valor) throws IllegalArgumentException {
         for (Cor cor : Cor.values()) {
             if (cor.valor == valor) {
                 return cor;
             }
         }
-        throw new IllegalArgumentException("Cor inválido: " + valor);
+        throw new IllegalArgumentException("Cor inválida: " + valor);
     }
 }
