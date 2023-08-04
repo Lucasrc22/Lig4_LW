@@ -29,8 +29,13 @@ public class Lig4 {
         return Cor.obterCorRandom();
     }
     public void jogar(int coluna) {
-        jogadorAtual.fazerJogada(tabuleiro, coluna);
-        
+        if (jogadorAtual instanceof JogadorHumano) {
+            jogadorAtual.fazerJogada(tabuleiro, coluna);
+        } else if (jogadorAtual instanceof IA) {
+            int colunaIA = obterColunaIA();
+            jogadorAtual.fazerJogada(tabuleiro, colunaIA);
+        }
+    
         if (checkVitoria()) {
             System.out.println(jogadorAtual.getNome() + " venceu!");
             reiniciarJogo();
@@ -39,9 +44,26 @@ public class Lig4 {
             reiniciarJogo();
         } else {
             trocarJogador();
-            System.out.println(jogadorAtual.getNome() + ", é a sua vez! Escolha a coluna (1 a 7):");
+            if (jogadorAtual instanceof JogadorHumano) {
+                System.out.println(jogadorAtual.getNome() + ", é a sua vez! Escolha a coluna (1 a 7):");
+            } else if (jogadorAtual instanceof IA) {
+                int colunaIA = obterColunaIA();
+                jogadorAtual.fazerJogada(tabuleiro, colunaIA);
+                System.out.println("A IA jogou na coluna " + (colunaIA + 1));
+                if (checkVitoria()) {
+                    System.out.println(jogadorAtual.getNome() + " venceu!");
+                    reiniciarJogo();
+                } else if (checkEmpate()) {
+                    System.out.println("O jogo terminou em empate!");
+                    reiniciarJogo();
+                } else {
+                    trocarJogador();
+                    System.out.println(jogadorAtual.getNome() + ", é a sua vez! Escolha a coluna (1 a 7):");
+                }
+            }
         }
     }
+    
     
     
     public void trocarJogador() {
