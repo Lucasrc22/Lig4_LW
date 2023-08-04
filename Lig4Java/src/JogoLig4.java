@@ -69,7 +69,7 @@ public class JogoLig4 {
             if (jogo.jogadorAtual instanceof JogadorHumano) {
                 System.out.println(jogo.jogadorAtual.getNome() + ", é a sua vez! Escolha a coluna (1 a 7):");
                 coluna = scanner.nextInt() - 1;
-                
+                jogo.jogar(coluna);
                 
             } else if (jogo.jogadorAtual instanceof IA) {
                 coluna = jogo.obterColunaIA();
@@ -79,7 +79,6 @@ public class JogoLig4 {
                
                 continue;
             }
-            jogo.jogar(coluna);
             
             if (jogo.checkVitoria()) {
                 jogo.tabuleiro.imprimir();
