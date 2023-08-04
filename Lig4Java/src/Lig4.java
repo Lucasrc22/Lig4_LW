@@ -13,8 +13,8 @@ public class Lig4 {
 
     public void inicializar() {
         tabuleiro = new Tabuleiro(6, 7);
-        Cor corJogador1 = obterCorRandom();
-        Cor corJogador2 = obterCorRandom();
+        Cor corJogador1 = obterCorDiferente(Cor.VAZIO);
+        Cor corJogador2 = obterCorDiferente(Cor.VAZIO);
         
         jogador1 = new JogadorHumano("Jogador 1", corJogador1);
         jogador1.setCor(corJogador1);  

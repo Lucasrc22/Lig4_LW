@@ -73,10 +73,9 @@ public class JogoLig4 {
                 
             } else if (jogo.jogadorAtual instanceof IA) {
                 coluna = jogo.obterColunaIA();
-                
+                jogo.jogar(coluna);
                 
             } else {
-               
                 continue;
             }
             
@@ -106,8 +105,5 @@ public class JogoLig4 {
             }
         } while (true);
     }
-    
-    
-    
-    
+   
 }
