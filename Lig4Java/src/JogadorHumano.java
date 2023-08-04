@@ -6,6 +6,8 @@ public class JogadorHumano extends Jogador {
 
     @Override
     public void fazerJogada(TabuleiroInterface tabuleiro, int coluna) {
+        Cor corPecaJogador = getCor();  
+        tabuleiro.inserirPeca(coluna, corPecaJogador); 
         if (!tabuleiro.colunaValida(coluna)) {
             System.out.println("Coluna inválida. Escolha uma coluna válida.");
             return;
@@ -16,8 +18,7 @@ public class JogadorHumano extends Jogador {
             return;
         }
 
-        Cor corPecaJogador = getCor();  
-        tabuleiro.inserirPeca(coluna, corPecaJogador); 
+        
     
 
     }

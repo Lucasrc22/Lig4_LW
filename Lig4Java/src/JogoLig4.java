@@ -55,28 +55,34 @@ public class JogoLig4 {
     public static void jogarPartida(Lig4 jogo, Scanner scanner) {
         while (true) {
             jogo.tabuleiro.imprimir();
-    
+            
             int coluna;
             if (jogo.jogadorAtual instanceof JogadorHumano) {
                 System.out.println(jogo.jogadorAtual.getNome() + ", é a sua vez! Escolha a coluna (1 a 7):");
                 coluna = scanner.nextInt() - 1;
-            } else {
+            } else if (jogo.jogadorAtual instanceof IA) {
                 coluna = jogo.obterColunaIA();
+            } else {
+               
+                continue;
             }
-    
+            
             jogo.jogar(coluna);
-    
+            
             if (jogo.checkVitoria()) {
+                jogo.tabuleiro.imprimir();
                 System.out.println(jogo.jogadorAtual.getNome() + " venceu!");
                 break;
             } else if (jogo.checkEmpate()) {
+                jogo.tabuleiro.imprimir();
                 System.out.println("O jogo terminou em empate!");
                 break;
             }
-    
+            
             jogo.trocarJogador();
         }
     }
+    
     
     
     
