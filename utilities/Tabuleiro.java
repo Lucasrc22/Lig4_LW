@@ -27,7 +27,7 @@ public class Tabuleiro implements TabuleiroInterface {
             }
             System.out.println("|");
         }
-        System.out.println("---------------------");
+        System.out.println("-----------------------------");
     }
 
     public boolean colunaValida(int coluna) {

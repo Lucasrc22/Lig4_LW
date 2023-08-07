@@ -13,16 +13,23 @@ public class Lig4 {
 
     public void inicializar() {
         tabuleiro = new Tabuleiro(6, 7);
-        Cor corJogador1 = obterCorRandom();
-        Cor corJogador2 = obterCorRandom();
+        Cor corJogador1 = obterCorDiferente(Cor.VAZIO);
+        Cor corJogador2 = obterCorDiferente(corJogador1);
         
         jogador1 = new JogadorHumano("Jogador 1", corJogador1);
         jogador1.setCor(corJogador1);  
         
-        jogador2 = modoIA ? new IA("IA", corJogador2) : new JogadorHumano("Jogador 2", corJogador2);
+        jogador2 = modoIA ? new IA("IA", obterCorDiferente(corJogador2)) : new JogadorHumano("Jogador 2", obterCorDiferente(corJogador2));
         jogador2.setCor(corJogador2);  
         
         jogadorAtual = jogador1;
+    }
+    private Cor obterCorDiferente(Cor corExcluida) {
+        Cor novaCor = obterCorRandom();
+        while (novaCor == corExcluida || novaCor == Cor.VAZIO) {
+            novaCor = obterCorRandom();
+        }
+        return novaCor;
     }
     
     private Cor obterCorRandom() {
@@ -34,6 +41,7 @@ public class Lig4 {
         } else if (jogadorAtual instanceof IA) {
             int colunaIA = obterColunaIA();
             jogadorAtual.fazerJogada(tabuleiro, colunaIA);
+            System.out.println( (colunaIA));
         }
     
         if (checkVitoria()) {
@@ -44,25 +52,11 @@ public class Lig4 {
             reiniciarJogo();
         } else {
             trocarJogador();
-            if (jogadorAtual instanceof JogadorHumano) {
-                System.out.println(jogadorAtual.getNome() + ", é a sua vez! Escolha a coluna (1 a 7):");
-            } else if (jogadorAtual instanceof IA) {
-                int colunaIA = obterColunaIA();
-                jogadorAtual.fazerJogada(tabuleiro, colunaIA);
-                System.out.println("A IA jogou na coluna " + (colunaIA + 1));
-                if (checkVitoria()) {
-                    System.out.println(jogadorAtual.getNome() + " venceu!");
-                    reiniciarJogo();
-                } else if (checkEmpate()) {
-                    System.out.println("O jogo terminou em empate!");
-                    reiniciarJogo();
-                } else {
-                    trocarJogador();
-                    System.out.println(jogadorAtual.getNome() + ", é a sua vez! Escolha a coluna (1 a 7):");
-                }
-            }
+            
         }
+        trocarJogador();
     }
+    
     
     
     

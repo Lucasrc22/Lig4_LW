@@ -8,10 +8,10 @@ public class Lig4TurboMaluco extends Lig4 {
         super(modoIA);
         this.nivelMaluquice = nivelMaluquice;
 
-        Cor corJogador1 = obterCorRandom();
-        Cor corJogador2 = obterCorRandom();
+        Cor corJogador1 = obterCorDiferente(Cor.VAZIO);
+        Cor corJogador2 = obterCorDiferente(Cor.VAZIO);
         jogador1 = new JogadorHumano("Jogador 1", corJogador1);
-        jogador2 = modoIA ? new IA("IA", corJogador2) : new JogadorHumano("Jogador 2", corJogador2);
+        jogador2 = modoIA ? new IA("IA", obterCorDiferente(corJogador2)) : new JogadorHumano("Jogador 2", obterCorDiferente(corJogador2));
         jogadorAtual = jogador1;
     }
     public void setNivelMaluquice(int nivelMaluquice)throws IllegalArgumentException {
@@ -20,27 +20,41 @@ public class Lig4TurboMaluco extends Lig4 {
         }
         this.nivelMaluquice = nivelMaluquice;
     }
+    private Cor obterCorDiferente(Cor corExcluida) {
+        Cor novaCor = obterCorRandom();
+        while (novaCor == corExcluida || novaCor == Cor.VAZIO) {
+            novaCor = obterCorRandom();
+        }
+        return novaCor;
+    }
 
     @Override
     public void jogar(int coluna) {
         if (jogadorAtual instanceof JogadorHumano) {
             JogadorHumano jogador = (JogadorHumano) jogadorAtual;
             Cor corJogadorAtual = jogador.getCor();
+            super.jogar(coluna);
             alterarPecasVizinhas(coluna, corJogadorAtual);
+        } else if (jogadorAtual instanceof IA) {
+            int colunaIa = obterColunaIA();
+            super.jogar(colunaIa);
+            Cor cor = jogadorAtual.getCor();
+            alterarPecasVizinhas(colunaIa, cor);
         }
-
-        super.jogar(coluna);
-
+        
         if (checkVitoria()) {
             System.out.println(jogadorAtual.getNome() + " venceu!");
             reiniciarJogo();
         } else if (checkEmpate()) {
             System.out.println("O jogo terminou em empate!");
             reiniciarJogo();
+        }else{
+            trocarJogador();
         }
-
+    
         trocarJogador();
     }
+    
 
 
     private void alterarPecasVizinhas(int coluna, Cor cor) {

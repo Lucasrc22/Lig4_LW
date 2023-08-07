@@ -2,6 +2,21 @@
 public class Lig4Turbo extends Lig4 {
     public Lig4Turbo(boolean modoIA){
         super(modoIA);
+        Cor corJogador1 = obterCorDiferente(Cor.VAZIO);
+        Cor corJogador2 = obterCorDiferente(Cor.VAZIO);
+        jogador1 = new JogadorHumano("Jogador 1", corJogador1);
+        jogador2 = modoIA ? new IA("IA", obterCorDiferente(corJogador2)) : new JogadorHumano("Jogador 2", obterCorDiferente(corJogador2));
+        jogadorAtual = jogador1;
+    }
+    private Cor obterCorDiferente(Cor corExcluida) {
+        Cor novaCor = obterCorRandom();
+        while (novaCor == corExcluida || novaCor == Cor.VAZIO) {
+            novaCor = obterCorRandom();
+        }
+        return novaCor;
+    }
+    private Cor obterCorRandom() {
+        return Cor.obterCorRandom();
     }
 
     @Override
@@ -33,6 +48,7 @@ public class Lig4Turbo extends Lig4 {
         } else {
             trocarJogador();
         }
+        trocarJogador();
     }
     
 
