@@ -8,18 +8,18 @@ public class Lig4 {
     protected boolean modoIA;
     public Lig4(boolean modoIA){
         this.modoIA = modoIA;
-        inicializar();
+        inicializar(null, null);
     }
 
-    public void inicializar() {
+    public void inicializar(String nomeJogador1, String nomeJogador2) {
         tabuleiro = new Tabuleiro(6, 7);
         Cor corJogador1 = obterCorDiferente(Cor.VAZIO);
         Cor corJogador2 = obterCorDiferente(corJogador1);
         
-        jogador1 = new JogadorHumano("Jogador 1", corJogador1);
+        jogador1 = new JogadorHumano(nomeJogador1, corJogador1);
         jogador1.setCor(corJogador1);  
         
-        jogador2 = modoIA ? new IA("IA", obterCorDiferente(corJogador2)) : new JogadorHumano("Jogador 2", obterCorDiferente(corJogador2));
+        jogador2 = modoIA ? new IA("IA", obterCorDiferente(corJogador2)) : new JogadorHumano(nomeJogador2, obterCorDiferente(corJogador2));
         jogador2.setCor(corJogador2);  
         
         jogadorAtual = jogador1;

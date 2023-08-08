@@ -30,12 +30,13 @@ public class Lig4Turbo extends Lig4 {
             alterarPecasVizinhas(linha, coluna, cor);
         } else if (jogadorAtual instanceof IA) {
             int colunaIA = obterColunaIA();
-            super.jogar(colunaIA);
+            
     
             int linha = tabuleiro.obterLinhaInsercao(colunaIA);
             Cor cor = jogadorAtual.getCor();
     
             alterarPecasVizinhas(linha, colunaIA, cor);
+            super.jogar(colunaIA);
         }
     
         

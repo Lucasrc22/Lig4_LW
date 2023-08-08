@@ -5,11 +5,13 @@ public class JogoLig4 {
         try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Bem-vindo ao jogo Lig 4!");
-    
+            String nomeJogador1 = obterNomeJogador1(scanner);
+            String nomeJogador2 = obterNomeJogador2(scanner);
+
             int opcao = obterOpcao(scanner);
             boolean modoIA = (opcao == 2);
-            boolean modoLig4TurboIA = (opcao == 4);
             boolean modoLig4TurboJogador = (opcao == 3);
+            boolean modoLig4TurboIA = (opcao == 4);
             boolean modoLig4TurboMalucoJogador =(opcao ==5);
             boolean modoLig4TurboMalucoIA = (opcao==6); 
     
@@ -24,7 +26,7 @@ public class JogoLig4 {
                 jogo = new Lig4(modoIA);
             }
     
-            jogo.inicializar();
+            jogo.inicializar(nomeJogador1, nomeJogador2);
     
             jogarPartida(jogo, scanner);
     
@@ -104,6 +106,14 @@ public class JogoLig4 {
                 return nivelMaluquice;
             }
         } while (true);
+    }
+    public static String obterNomeJogador1(Scanner scanner) {
+        System.out.print("Digite o nome do Jogador 1: ");
+        return scanner.nextLine();
+    }
+    public static String obterNomeJogador2(Scanner scanner) {
+        System.out.print("Digite o nome do Jogador 2: ");
+        return scanner.nextLine();
     }
    
 }
