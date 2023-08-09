@@ -5,30 +5,37 @@ public class JogoLig4 {
         try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Bem-vindo ao jogo Lig 4!");
-            String nomeJogador1 = obterNomeJogador1(scanner);
-            String nomeJogador2 = obterNomeJogador2(scanner);
+            
+            
+                String nomeJogador1 = obterNomeJogador1(scanner);
+                String nomeJogador2 = obterNomeJogador2(scanner);
 
-            int opcao = obterOpcao(scanner);
-            boolean modoIA = (opcao == 2);
-            boolean modoLig4TurboJogador = (opcao == 3);
-            boolean modoLig4TurboIA = (opcao == 4);
-            boolean modoLig4TurboMalucoJogador =(opcao ==5);
-            boolean modoLig4TurboMalucoIA = (opcao==6); 
-    
-            Lig4 jogo;
-    
-            if (modoLig4TurboIA || modoLig4TurboJogador) {
-                jogo = new Lig4Turbo(modoIA);
-            } else if (modoLig4TurboMalucoIA || modoLig4TurboMalucoJogador) {
-                int nivelMaluquice = obterNivelMaluquice(scanner);
-                jogo = new Lig4TurboMaluco(modoIA, nivelMaluquice);
-            } else {
-                jogo = new Lig4(modoIA);
-            }
-    
-            jogo.inicializar(nomeJogador1, nomeJogador2);
-    
-            jogarPartida(jogo, scanner);
+                int opcao = obterOpcao(scanner);
+                boolean modoIA = (opcao == 2);
+                boolean modoLig4TurboJogador = (opcao == 3);
+                boolean modoLig4TurboIA = (opcao == 4);
+                boolean modoLig4TurboMalucoJogador =(opcao ==5);
+                boolean modoLig4TurboMalucoIA = (opcao==6); 
+        
+                Lig4 jogo;
+        
+                if (modoLig4TurboIA || modoLig4TurboJogador) {
+                    jogo = new Lig4Turbo(modoIA);
+                } else if (modoLig4TurboMalucoIA || modoLig4TurboMalucoJogador) {
+                    int nivelMaluquice = obterNivelMaluquice(scanner);
+                    jogo = new Lig4TurboMaluco(modoIA, nivelMaluquice);
+                } else {
+                    jogo = new Lig4(modoIA);
+                }
+        
+                jogo.inicializar(nomeJogador1, nomeJogador2);
+        
+                jogarPartida(jogo, scanner);
+                
+                
+            
+            System.out.println("Obrigado por jogar! Até a próxima.");
+            
     
             scanner.close();
         } catch (Exception e) {
@@ -64,7 +71,9 @@ public class JogoLig4 {
     }
 
     public static void jogarPartida(Lig4 jogo, Scanner scanner) {
-        while (true) {
+        boolean continuarJogando = true;
+        while(continuarJogando){
+            while (true) {
             jogo.tabuleiro.imprimir();
             
             int coluna;
@@ -92,7 +101,13 @@ public class JogoLig4 {
             }
             
             jogo.trocarJogador();
+            }
+        continuarJogando = desejaContinuar(scanner);
+        if (continuarJogando) {
+            jogo.reiniciarJogo();
         }
+        }
+        
     }
     public static int obterNivelMaluquice(Scanner scanner) {
         int nivelMaluquice;
@@ -115,5 +130,19 @@ public class JogoLig4 {
         System.out.print("Digite o nome do Jogador 2: ");
         return scanner.nextLine();
     }
+    public static boolean desejaContinuar(Scanner scanner) {
+        while (true) {
+            System.out.print("Deseja continuar jogando? (S/N): ");
+            String resposta = scanner.nextLine().toUpperCase();
+            if (resposta.equals("S")) {
+                return true;
+            } else if (resposta.equals("N")) {
+                return false;
+            } else {
+                System.out.println("");
+            }
+        }
+    }
+    
    
 }

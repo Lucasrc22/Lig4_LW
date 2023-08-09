@@ -43,7 +43,7 @@ public class Lig4 {
             jogadorAtual.fazerJogada(tabuleiro, colunaIA);
             System.out.println( (colunaIA));
         }
-    
+        /* 
         if (checkVitoria()) {
             System.out.println(jogadorAtual.getNome() + " venceu!");
             reiniciarJogo();
@@ -55,6 +55,7 @@ public class Lig4 {
             
         }
         trocarJogador();
+        */
     }
     
     
