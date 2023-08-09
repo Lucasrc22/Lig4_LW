@@ -113,25 +113,21 @@ public class JogoLig4 {
         String nivelMaluquice;
         do {
             System.out.print("Digite o nível de maluquice Facil, Medio ou Tricolor: ");
-            nivelMaluquice = scanner.nextLine();
-            if(nivelMaluquice == "Facil" || nivelMaluquice == "facil"){
+            nivelMaluquice = scanner.nextLine().trim();
+            
+            if ("facil".equalsIgnoreCase(nivelMaluquice)) {
                 return nivelMaluquice;
-            } else if(nivelMaluquice == "Medio" || nivelMaluquice == "medio"){
+            } else if ("medio".equalsIgnoreCase(nivelMaluquice)) {
                 return nivelMaluquice;
-            } else if(nivelMaluquice == "Tricolor" || nivelMaluquice == "tricolor"){
+            } else if ("tricolor".equalsIgnoreCase(nivelMaluquice)) {
                 return nivelMaluquice;
-            } else{
+            } else {
                 System.out.println("Nível de maluquice inválido! Deve ser entre Facil, Medio ou Tricolor");
             }
-            /* 
-            if (nivelMaluquice < 0 || nivelMaluquice > 100) {
-                System.out.println("Nível de maluquice inválido! Deve estar entre 0 e 100.");
-            } else {
-                return nivelMaluquice;
-            }
-            */
+            
         } while (true);
     }
+    
     public static String obterNomeJogador1(Scanner scanner) {
         System.out.print("Digite o nome do Jogador 1: ");
         return scanner.nextLine();
