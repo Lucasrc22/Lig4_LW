@@ -2,9 +2,9 @@ import java.util.Random;
 
 public class Lig4TurboMaluco extends Lig4 {
 
-    private int nivelMaluquice;
+    private String nivelMaluquice;
 
-    public Lig4TurboMaluco(boolean modoIA, int nivelMaluquice) {
+    public Lig4TurboMaluco(boolean modoIA, String nivelMaluquice) {
         super(modoIA);
         this.nivelMaluquice = nivelMaluquice;
 
@@ -14,9 +14,9 @@ public class Lig4TurboMaluco extends Lig4 {
         jogador2 = modoIA ? new IA("IA", obterCorDiferente(corJogador2)) : new JogadorHumano("Jogador 2", obterCorDiferente(corJogador2));
         jogadorAtual = jogador1;
     }
-    public void setNivelMaluquice(int nivelMaluquice)throws IllegalArgumentException {
-        if (nivelMaluquice < 0 || nivelMaluquice > 100) {
-            throw new IllegalArgumentException("O nível de maluquice deve estar entre 0 e 100.");
+    public void setNivelMaluquice(String nivelMaluquice)throws IllegalArgumentException {
+        if (nivelMaluquice!="Normal"  || nivelMaluquice!="normal" || nivelMaluquice !="Medio" || nivelMaluquice !="medio" || nivelMaluquice !="Tricolor" || nivelMaluquice !="tricolor") {
+            throw new IllegalArgumentException("Nível de maluquice inválido! Deve ser entre Normal, Medio ou Tricolor");
         }
         this.nivelMaluquice = nivelMaluquice;
     }
@@ -72,13 +72,33 @@ public class Lig4TurboMaluco extends Lig4 {
 
     private Cor obterCorRandom() {
         Random random = new Random();
-        int prob = random.nextInt(100);
-
-        if (prob < nivelMaluquice) {
-            Cor[] cores = Cor.values();
-            return cores[random.nextInt(cores.length)];
+        
+        if ("Facil".equalsIgnoreCase(nivelMaluquice) || "facil".equalsIgnoreCase(nivelMaluquice)) {
+            if (random.nextInt(29) < 30) {
+                return jogadorAtual.getCor();
+            } else {
+                Cor[] cores = Cor.values();
+                return cores[random.nextInt(cores.length)];
+            }
+        } else if ("Medio".equalsIgnoreCase(nivelMaluquice) || "medio".equalsIgnoreCase(nivelMaluquice)) {
+            if (random.nextInt(49) < 50) {
+                return jogadorAtual.getCor();
+            } else {
+                Cor[] cores = Cor.values();
+                return cores[random.nextInt(cores.length)];
+            }
+        } else if ("Tricolor".equalsIgnoreCase(nivelMaluquice) || "tricolor".equalsIgnoreCase(nivelMaluquice)) {
+            if (random.nextInt(69) < 70) {
+                return jogadorAtual.getCor();
+            } else {
+                Cor[] cores = Cor.values();
+                return cores[random.nextInt(cores.length)];
+            }
         } else {
             return jogadorAtual.getCor();
         }
     }
+    
+    
+    
 }

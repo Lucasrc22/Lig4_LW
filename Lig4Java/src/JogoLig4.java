@@ -22,7 +22,7 @@ public class JogoLig4 {
                 if (modoLig4TurboIA || modoLig4TurboJogador) {
                     jogo = new Lig4Turbo(modoIA);
                 } else if (modoLig4TurboMalucoIA || modoLig4TurboMalucoJogador) {
-                    int nivelMaluquice = obterNivelMaluquice(scanner);
+                    String nivelMaluquice = obterNivelMaluquice(scanner);
                     jogo = new Lig4TurboMaluco(modoIA, nivelMaluquice);
                 } else {
                     jogo = new Lig4(modoIA);
@@ -109,17 +109,27 @@ public class JogoLig4 {
         }
         
     }
-    public static int obterNivelMaluquice(Scanner scanner) {
-        int nivelMaluquice;
+    public static String obterNivelMaluquice(Scanner scanner) {
+        String nivelMaluquice;
         do {
-            System.out.print("Digite o nível de maluquice (0 a 100): ");
-            nivelMaluquice = scanner.nextInt();
-
+            System.out.print("Digite o nível de maluquice Facil, Medio ou Tricolor: ");
+            nivelMaluquice = scanner.nextLine();
+            if(nivelMaluquice == "Facil" || nivelMaluquice == "facil"){
+                return nivelMaluquice;
+            } else if(nivelMaluquice == "Medio" || nivelMaluquice == "medio"){
+                return nivelMaluquice;
+            } else if(nivelMaluquice == "Tricolor" || nivelMaluquice == "tricolor"){
+                return nivelMaluquice;
+            } else{
+                System.out.println("Nível de maluquice inválido! Deve ser entre Facil, Medio ou Tricolor");
+            }
+            /* 
             if (nivelMaluquice < 0 || nivelMaluquice > 100) {
                 System.out.println("Nível de maluquice inválido! Deve estar entre 0 e 100.");
             } else {
                 return nivelMaluquice;
             }
+            */
         } while (true);
     }
     public static String obterNomeJogador1(Scanner scanner) {
