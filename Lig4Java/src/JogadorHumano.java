@@ -16,11 +16,11 @@ public class JogadorHumano extends Jogador {
             return;
         }
 
-        Cor corPecaJogador = getCor();  
-        tabuleiro.inserirPeca(coluna, corPecaJogador); 
-    
+        Cor corPecaJogador = getCor();
+        tabuleiro.inserirPeca(coluna, corPecaJogador);
 
     }
+
     @Override
     public String obterTipoJogador() {
         return "Humano";
