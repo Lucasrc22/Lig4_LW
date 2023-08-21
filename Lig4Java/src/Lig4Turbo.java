@@ -1,13 +1,15 @@
 
 public class Lig4Turbo extends Lig4 {
-    public Lig4Turbo(boolean modoIA){
+    public Lig4Turbo(boolean modoIA) {
         super(modoIA);
         Cor corJogador1 = obterCorDiferente(Cor.VAZIO);
         Cor corJogador2 = obterCorDiferente(Cor.VAZIO);
         jogador1 = new JogadorHumano("Jogador 1", corJogador1);
-        jogador2 = modoIA ? new IA("IA", obterCorDiferente(corJogador2)) : new JogadorHumano("Jogador 2", obterCorDiferente(corJogador2));
+        jogador2 = modoIA ? new IA("IA", obterCorDiferente(corJogador2))
+                : new JogadorHumano("Jogador 2", obterCorDiferente(corJogador2));
         jogadorAtual = jogador1;
     }
+
     private Cor obterCorDiferente(Cor corExcluida) {
         Cor novaCor = obterCorRandom();
         while (novaCor == corExcluida || novaCor == Cor.VAZIO) {
@@ -15,6 +17,7 @@ public class Lig4Turbo extends Lig4 {
         }
         return novaCor;
     }
+
     private Cor obterCorRandom() {
         return Cor.obterCorRandom();
     }
@@ -23,23 +26,21 @@ public class Lig4Turbo extends Lig4 {
     public void jogar(int coluna) {
         if (jogadorAtual instanceof JogadorHumano) {
             super.jogar(coluna);
-    
+
             int linha = tabuleiro.obterLinhaInsercao(coluna);
             Cor cor = jogadorAtual.getCor();
-    
+
             alterarPecasVizinhas(linha, coluna, cor);
         } else if (jogadorAtual instanceof IA) {
             int colunaIA = obterColunaIA();
-            
-    
+
             int linha = tabuleiro.obterLinhaInsercao(colunaIA);
             Cor cor = jogadorAtual.getCor();
-    
+
             alterarPecasVizinhas(linha, colunaIA, cor);
             super.jogar(colunaIA);
         }
-    
-        
+
         if (checkVitoria()) {
             System.out.println(jogadorAtual.getNome() + " venceu!");
             reiniciarJogo();
@@ -51,10 +52,6 @@ public class Lig4Turbo extends Lig4 {
         }
         trocarJogador();
     }
-    
-
-   
-    
 
     private void alterarPecasVizinhas(int linha, int coluna, Cor cor) {
         for (int i = 1; i <= 3; i++) {
@@ -84,6 +81,5 @@ public class Lig4Turbo extends Lig4 {
     private boolean posicaoValida(int linha, int coluna) {
         return linha >= 0 && linha < tabuleiro.getLinhas() && coluna >= 0 && coluna < tabuleiro.getColunas();
     }
-    
-    
+
 }
