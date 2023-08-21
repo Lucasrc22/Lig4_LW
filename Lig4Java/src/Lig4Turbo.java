@@ -8,6 +8,7 @@ public class Lig4Turbo extends Lig4 {
         jogador2 = modoIA ? new IA("IA", obterCorDiferente(corJogador2))
                 : new JogadorHumano("Jogador 2", obterCorDiferente(corJogador2));
         jogadorAtual = jogador1;
+        inicializar(null, null);
     }
 
     private Cor obterCorDiferente(Cor corExcluida) {
